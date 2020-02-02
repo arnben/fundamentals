@@ -1,0 +1,11 @@
+applications:
+  - name: fundamentals-dev
+    path: C:\VMASURKA\workspace\fundamentals\build\libs\fundamentals-0.0.1-SNAPSHOT.jar
+    buildpack: java_buildpack
+    memory: 2G
+    timeout: 180
+    instances: 1
+    services:
+    env:
+      _JAVA_OPTIONS: -Dlogging.level.org.springframework.web=INFO -Dlogging.level.org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor=INFO -Dlogging.level.org.springframework.cloud.sleuth=INFO -Dlogging.level.org.springframework.ws.client.MessageTracing.sent=INFO -Dlogging.level.org.springframework.ws.client.MessageTracing.received=INFO
+

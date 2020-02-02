@@ -28,11 +28,31 @@ class FundamentalsApplicationTests {
     }
 
 	@Test
-	void contextLoads() throws Exception {
+	void testHello() throws Exception {
         mvc.perform(
-                MockMvcRequestBuilders.get("/home").accept(MediaType.APPLICATION_JSON))
+                MockMvcRequestBuilders.get("/api/home").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message", is("Hello")));
 	}
 
+	@Test
+    void testAddUser() throws Exception {
+        mvc.perform(
+                MockMvcRequestBuilders.post("/api/user").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\n" +
+                            "\t\"firstName\" : \"Rob\",\n" +
+                            "\t\"lastName\" : \"Stark\",\n" +
+                            "\t\"email\" : \"rob.stark@winterfel.com\"\n" +
+                            "}"))
+                .andExpect(status().isAccepted());
+    }
+
+    @Test
+    void testGetAllUser() throws Exception {
+        mvc.perform(
+                MockMvcRequestBuilders.get("/api/user").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.users.length()" , is(1)))
+                .andExpect(jsonPath("$.users[0].firstName", is("Rob")));
+    }
 }

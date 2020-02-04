@@ -1,4 +1,4 @@
-package com.vim.fundamentals;
+package com.vim.fundamentals.controller;
 
 public class FunduResponse {
     private String message;

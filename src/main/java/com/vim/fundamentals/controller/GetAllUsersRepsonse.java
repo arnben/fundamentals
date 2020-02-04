@@ -1,4 +1,6 @@
-package com.vim.fundamentals.model;
+package com.vim.fundamentals.controller;
+
+import com.vim.fundamentals.model.FunduUser;
 
 public class GetAllUsersRepsonse {
     private Iterable<FunduUser> users;

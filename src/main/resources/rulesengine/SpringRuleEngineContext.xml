@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans SYSTEM "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- Spring context for Spring Rule Engine -->
+
+<beans>
+	<!-- rule engine processor -->
+	<bean id="SharkysExpressLoansApplicationProcessor" class="com.vim.rulesengine.SpringRuleEngine">
+		<property name="firstStep">
+			<ref bean="ValidAppRule"/>
+		</property>
+	</bean>
+	
+	<!-- persistence service -->
+	<bean id="LoanAppPersistenceService" class="com.vim.rulesengine.loanapp.MockLoanAppPersistence"/>
+	
+	<!-- rejection -->
+	<bean id="RejectionAction" class="com.vim.rulesengine.loanapp.ProcessRejectionAction">
+		<property name="persistenceService">
+			<ref bean="LoanAppPersistenceService"/>
+		</property>
+	</bean>
+
+	<!-- approval -->
+	<bean id="ApprovalAction" class="com.vim.rulesengine.loanapp.ProcessApprovalAction">
+		<property name="persistenceService">
+			<ref bean="LoanAppPersistenceService"/>
+		</property>
+	</bean>
+	
+	<!-- check income/expense ratio -->
+	<bean id="ValidIncomeExpenseRatioRule" class="com.vim.rulesengine.loanapp.ValidIncomeExpenseRatioRule">
+		<property name="validRatio">
+			<value>0.70</value>
+		</property>
+		<property name="positiveOutcomeStep">
+			<ref bean="ApprovalAction"/>
+		</property>
+		<property name="negativeOutcomeStep">
+			<ref bean="RejectionAction"/>
+		</property>
+	</bean>
+	
+	<!-- check valid state -->
+	<bean id="ValidStateRule" class="com.vim.rulesengine.loanapp.ValidStateRule">
+		<property name="validStates">
+			<list>
+				<value>TX</value>
+				<value>MI</value>
+			</list>
+		</property>
+		<property name="positiveOutcomeStep">
+			<ref bean="ValidIncomeExpenseRatioRule"/>
+		</property>
+		<property name="negativeOutcomeStep">
+			<ref bean="RejectionAction"></ref>
+		</property>
+	</bean>
+	
+	<!-- validation -->
+	<bean id="ValidAppRule" class="com.vim.rulesengine.loanapp.ValidAppRule">
+		<property name="positiveOutcomeStep">
+			<ref bean="ValidStateRule"/>
+		</property>
+		<property name="negativeOutcomeStep">
+			<ref bean="RejectionAction"></ref>
+		</property>		
+	</bean>
+</beans>

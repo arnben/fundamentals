@@ -10,9 +10,17 @@ public class LoanApp {
     private String stateCode;
     private String status;
 
+    public void setStatus(LoanState status) {
+        if(null != status) {
+            throw new IllegalArgumentException("invalid status:" + status.getStatus());
+        }
+        this.status = status.getStatus();
+    }
+
     public void setStatus(String status) {
-        if(! LoanState.contains(status))
+        if(! LoanState.contains(status)) {
             throw new IllegalArgumentException("invalid status:" + status);
+        }
         this.status = status;
     }
 

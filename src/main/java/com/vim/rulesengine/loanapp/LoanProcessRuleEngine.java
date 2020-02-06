@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class LoanProcessRuleEngine extends SpringRuleEngine {
     public static final SpringRuleEngine getEngine(String name) {
         ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext("SpringRuleEngineContext.xml");
+                new ClassPathXmlApplicationContext("rulesengine/SpringRuleEngineContext.xml");
         return (SpringRuleEngine) context.getBean(name);
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.statemachine.StateMachine;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MachineBuilderTest {
+class MachineBuilderFeatureTest {
 
     private MachineBuilder smBuilder = new MachineBuilder();
 

@@ -1,7 +1,5 @@
 package com.vim.rulesengine.loanapp;
 
-import java.util.Arrays;
-
 public class LoanApp {
     private String firstName;
     private String lastName;

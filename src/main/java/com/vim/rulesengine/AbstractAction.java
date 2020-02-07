@@ -6,8 +6,9 @@ public abstract class AbstractAction extends AbstractComponent {
 
     public void execute(Object arg) throws Exception {
         this.doExecute(arg);
-        if(nextStep != null)
+        if(nextStep != null) {
             nextStep.execute(arg);
+        }
     }
 
     protected abstract void doExecute(Object arg) throws Exception;
@@ -19,5 +20,4 @@ public abstract class AbstractAction extends AbstractComponent {
     public AbstractComponent getNextStep() {
         return nextStep;
     }
-
 }

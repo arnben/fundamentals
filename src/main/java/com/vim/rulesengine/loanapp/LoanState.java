@@ -9,12 +9,8 @@ public enum LoanState {
 
     private String status;
 
-    private LoanState(String msg) {
-        this.status = msg;
-    }
-
-    public static boolean contains(String status) {
-        return (null == LoanState.valueOf(status)) ? false : true;
+    private LoanState(String status) {
+        this.status = status;
     }
 
     public String getStatus() {

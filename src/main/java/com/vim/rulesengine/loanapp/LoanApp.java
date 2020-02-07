@@ -6,19 +6,9 @@ public class LoanApp {
     private double income;
     private double expences;
     private String stateCode;
-    private String status;
+    private LoanState status;
 
     public void setStatus(LoanState status) {
-        if(null != status) {
-            throw new IllegalArgumentException("invalid status:" + status.getStatus());
-        }
-        this.status = status.getStatus();
-    }
-
-    public void setStatus(String status) {
-        if(! LoanState.contains(status)) {
-            throw new IllegalArgumentException("invalid status:" + status);
-        }
         this.status = status;
     }
 
@@ -62,7 +52,7 @@ public class LoanApp {
         this.stateCode = stateCode;
     }
 
-    public String getStatus() {
+    public LoanState getStatus() {
         return status;
     }
 }

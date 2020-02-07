@@ -7,11 +7,11 @@ public abstract class AbstractRule extends AbstractComponent {
 
     public void execute(Object arg) throws Exception {
         boolean outcome = makeDecision(arg);
-        if(outcome)
+        if(outcome) {
             positiveOutcomeStep.execute(arg);
-        else
+        } else {
             negativeOutcomeStep.execute(arg);
-
+        }
     }
 
     protected abstract boolean makeDecision(Object arg) throws Exception;

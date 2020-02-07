@@ -8,9 +8,9 @@ public class ValidIncomeExpenseRatioRule extends AbstractRule {
 
     protected boolean makeDecision(Object arg) throws Exception {
         LoanApp app = (LoanApp) arg;
-        if(( app.getExpences() / app.getIncome() ) < validRatio)
+        if(( app.getExpences() / app.getIncome() ) < validRatio) {
             return true;
-
+        }
         app.setStatus(LoanState.INVALID_INCOME_EXPENSE_RATIO);
         return false;
     }
